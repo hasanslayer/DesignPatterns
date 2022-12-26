@@ -8,34 +8,34 @@ namespace DesignPatterns.Iterator
 {
     public class BrowseHistory
     {
-        private List<string> urls = new List<string>();
+        private string[] urls = new string[10];
+        private int count;
 
         public void Push(string url)
         {
-            urls.Add(url);
+            urls[count] = url;
+            count++;
         }
 
         public string Pop()
         {
-            var lastIndex = urls.Count - 1;
-            var lastUrl = urls[lastIndex];
-            urls.Remove(lastUrl);
+            count--;
 
-            return lastUrl;
+            return urls[count];
 
         }
 
         public Iterator CreateIterator()
         {
-            return new ListIterator(this);
+            return new ArrayIterator(this);
         }
 
-        public class ListIterator : Iterator
+        public class ArrayIterator : Iterator
         {
             private BrowseHistory history;
             private int index;
 
-            public ListIterator(BrowseHistory history)
+            public ArrayIterator(BrowseHistory history)
             {
                 this.history = history;
             }
@@ -47,7 +47,7 @@ namespace DesignPatterns.Iterator
 
             public bool HasNext()
             {
-                return index < history.urls.Count;
+                return index < history.count;
             }
 
             public void Next()
