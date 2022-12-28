@@ -2,6 +2,7 @@
 using DesignPatterns.Iterator;
 using DesignPatterns.Memento;
 using DesignPatterns.State;
+using DesignPatterns.Strategy;
 
 namespace DesignPatterns
 {
@@ -9,22 +10,9 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
-            var history = new BrowseHistory();
-
-            history.Push("a");
-            history.Push("b");
-            history.Push("c");
-
-            Iterator.Iterator iterator = history.CreateIterator();
-
-            while (iterator.HasNext())
-            {
-                var url = iterator.Current();
-                Console.WriteLine(url);
-                iterator.Next();
-            }
-
-
+            ImageStorage imageStorage = new ImageStorage();
+            imageStorage.Store("fileName",new PngCompressor(), new BlackAndWhiteFilter());
+            imageStorage.Store("fileName",new JpegCompressor(), new HighContrastFilter());
         }
     }
 }
