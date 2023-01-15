@@ -3,6 +3,7 @@ using DesignPatterns.Iterator;
 using DesignPatterns.Memento;
 using DesignPatterns.State;
 using DesignPatterns.Strategy;
+using DesignPatterns.Template;
 
 namespace DesignPatterns
 {
@@ -10,9 +11,10 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
-            ImageStorage imageStorage = new ImageStorage();
-            imageStorage.Store("fileName",new PngCompressor(), new BlackAndWhiteFilter());
-            imageStorage.Store("fileName",new JpegCompressor(), new HighContrastFilter());
+            // Transfer Money
+            var task = new TransferMoneyTask();
+            task.Execute();
+           // Generate Report
         }
     }
 }
