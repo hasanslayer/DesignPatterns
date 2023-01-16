@@ -6,19 +6,10 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns.Template
 {
-    public class GenerateReportTask
+    public class GenerateReportTask : Task
     {
-        private AuditTrail auditTrail;
-
-        public GenerateReportTask(AuditTrail auditTrail)
+        protected override void DoExecute()
         {
-            this.auditTrail = auditTrail;
-        }
-
-        public void Execute()
-        {
-            auditTrail.Record();
-
             Console.WriteLine("Generate Report");
         }
     }

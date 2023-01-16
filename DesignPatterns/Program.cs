@@ -14,7 +14,9 @@ namespace DesignPatterns
             // Transfer Money
             var task = new TransferMoneyTask();
             task.Execute();
-           // Generate Report
+            // Generate Report
+            var report = new GenerateReportTask();
+            report.Execute();
         }
     }
 }
