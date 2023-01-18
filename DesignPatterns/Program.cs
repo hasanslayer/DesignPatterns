@@ -1,4 +1,6 @@
 ﻿
+using DesignPatterns.Command;
+using DesignPatterns.Command.FX;
 using DesignPatterns.Iterator;
 using DesignPatterns.Memento;
 using DesignPatterns.State;
@@ -11,12 +13,11 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
-            // Transfer Money
-            var task = new TransferMoneyTask();
-            task.Execute();
-            // Generate Report
-            var report = new GenerateReportTask();
-            report.Execute();
+            var service = new CustomerService();
+            var command = new AddCustomerCommand(service);
+            var button = new Button(command);
+
+            button.Click();
         }
     }
 }
