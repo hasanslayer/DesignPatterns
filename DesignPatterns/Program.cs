@@ -13,11 +13,10 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
-            var service = new CustomerService();
-            var command = new AddCustomerCommand(service);
-            var button = new Button(command);
-
-            button.Click();
+            var composite = new CompositeCommand();
+            composite.Add(new ResizeCommand());
+            composite.Add(new BlackAndWhiteCommand());
+            composite.Execute();
         }
     }
 }
