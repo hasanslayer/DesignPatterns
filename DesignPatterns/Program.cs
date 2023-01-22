@@ -1,11 +1,5 @@
-﻿
-using DesignPatterns.Command;
-using DesignPatterns.Command.FX;
-using DesignPatterns.Iterator;
-using DesignPatterns.Memento;
-using DesignPatterns.State;
-using DesignPatterns.Strategy;
-using DesignPatterns.Template;
+﻿using DesignPatterns.Command.Editor;
+using History = DesignPatterns.Command.Editor.History;
 
 namespace DesignPatterns
 {
@@ -13,10 +7,18 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
-            var composite = new CompositeCommand();
-            composite.Add(new ResizeCommand());
-            composite.Add(new BlackAndWhiteCommand());
-            composite.Execute();
+            var history = new History();
+            var document = new HtmlDocument();
+            document.SetContent("Hello World");
+
+            var boldCommand = new BoldCommand(document, history);
+            boldCommand.Execute();
+            Console.WriteLine(document.GetContent());
+
+
+            var undoCommand = new UndoCommand(history);
+            undoCommand.Execute();
+            Console.WriteLine(document.GetContent());
         }
     }
 }
